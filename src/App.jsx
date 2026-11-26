@@ -1,93 +1,143 @@
 
 import "./App.css";
+import { Routes, Route, Link } from "react-router-dom";
+import Gold from "./pages/Gold";
+import Silver from "./pages/Silver";
+import Diamond from "./pages/Diamond";
+import { useState } from "react";
 
 const whatsappNumber = "919447879288";
 
 const collections = [
   {
     name: "Gold Jewellery",
-    image: "https://images.unsplash.com/photo-1611652022419-a9419f74343d?w=800"
+    image: "https://images.unsplash.com/photo-1611652022419-a9419f74343d?w=800",
+    path: "/gold",
   },
   {
     name: "Silver Jewellery",
-    image: "https://images.unsplash.com/photo-1611591437281-460bfbe1220a?w=800"
+    image: "https://images.unsplash.com/photo-1611591437281-460bfbe1220a?w=800",
+    path: "/silver",
   },
   {
     name: "Diamond Jewellery",
-    image: "https://images.unsplash.com/photo-1605100804763-247f67b3557e?w=800"
+    image: "https://images.unsplash.com/photo-1605100804763-247f67b3557e?w=800",
+    path: "/diamond",
   },
   {
     name: "Fashion Jewellery",
-    image: "https://images.unsplash.com/photo-1535632066927-ab7c9ab60908?w=800"
+    image: "https://images.unsplash.com/photo-1535632066927-ab7c9ab60908?w=800",
+    path: "/contact",
   },
   {
     name: "Bridal Collection",
-    image: "https://images.unsplash.com/photo-1599643478518-a784e5dc4c8f?w=800"
-  }
+    image: "https://images.unsplash.com/photo-1599643478518-a784e5dc4c8f?w=800",
+    path: "/contact",
+  },
 ];
 
 const featuredProducts = [
   {
     name: "Royal Gold Necklace",
     category: "Gold Collection",
-    image: "https://images.unsplash.com/photo-1599643478518-a784e5dc4c8f?w=800"
+    image: "https://images.unsplash.com/photo-1599643478518-a784e5dc4c8f?w=800",
   },
   {
     name: "Elegant Diamond Ring",
     category: "Diamond Collection",
-    image: "https://images.unsplash.com/photo-1605100804763-247f67b3557e?w=800"
+    image: "https://images.unsplash.com/photo-1605100804763-247f67b3557e?w=800",
   },
   {
     name: "Traditional Gold Earrings",
     category: "Gold Collection",
-    image: "https://images.unsplash.com/photo-1611652022419-a9419f74343d?w=800"
+    image: "https://images.unsplash.com/photo-1611652022419-a9419f74343d?w=800",
   },
   {
     name: "Bridal Jewellery Set",
     category: "Bridal Collection",
-    image: "https://images.unsplash.com/photo-1617038220319-276d3cfab638?w=800"
-  }
+    image: "https://images.unsplash.com/photo-1617038220319-276d3cfab638?w=800",
+  },
 ];
 
+function scrollToSection(id) {
+  document.getElementById(id)?.scrollIntoView({
+    behavior: "smooth",
+  });
+}
 
-function App() {
+function Home() {
+  const [showIntro, setShowIntro] = useState(
+  !sessionStorage.getItem("bindu_intro_played")
+);
+
+if (showIntro) {
+  sessionStorage.setItem("bindu_intro_played", "yes");
+}
   return (
     <div className="website">
 
+      {showIntro && (
   <div className="splash-screen">
-    <div className="splash-brand">
-      <h1>BINDU</h1>
-      <span>J E W E L L E R Y</span>
-      <div className="gold-line"></div>
-    </div>
-  </div>
+        <div className="splash-brand">
+          <h1>BINDU</h1>
+          <span>J E W E L L E R Y</span>
+          <div className="gold-line"></div>
+        </div>
 
-  <div className="announcement">
+      </div>
+      )}
+
+      <div className="announcement">
         Discover elegance with BINDU JEWELLERY
       </div>
 
       <header className="navbar">
-        <a href="#" className="logo">
+        <Link to="/" className="logo">
           BINDU
           <span>JEWELLERY</span>
-        </a>
+        </Link>
 
         <nav>
-          <a href="#home">Home</a>
-          <a href="#collections">Collections</a>
-          <a href="#about">About Us</a>
-          <a href="#contact">Contact</a>
+          <a href="#home" onClick={(e) => {
+            e.preventDefault();
+            scrollToSection("home");
+          }}>Home</a>
+
+          <a href="#collections" onClick={(e) => {
+            e.preventDefault();
+            scrollToSection("collections");
+          }}>Collections</a>
+
+          <a href="#about" onClick={(e) => {
+            e.preventDefault();
+            scrollToSection("about");
+          }}>About Us</a>
+
+          <a href="#contact" onClick={(e) => {
+            e.preventDefault();
+            scrollToSection("contact");
+          }}>Contact</a>
         </nav>
 
-        <a className="nav-contact" href="#contact">
+        <a
+          className="nav-contact"
+          href="#contact"
+          onClick={(e) => {
+            e.preventDefault();
+            scrollToSection("contact");
+          }}
+        >
           Enquire Now
         </a>
       </header>
 
       <main>
+
         <section className="hero" id="home">
           <div className="hero-content">
-            <p className="eyebrow">TIMELESS BEAUTY · ETERNAL ELEGANCE</p>
+            <p className="eyebrow">
+              TIMELESS BEAUTY · ETERNAL ELEGANCE
+            </p>
 
             <h1>
               Jewellery that
@@ -100,218 +150,318 @@ function App() {
               fashion jewellery for every special moment.
             </p>
 
-            <a href="#collections" className="primary-button">
+            <a
+              href="#collections"
+              className="primary-button"
+              onClick={(e) => {
+                e.preventDefault();
+                scrollToSection("collections");
+              }}
+            >
               EXPLORE COLLECTIONS
             </a>
           </div>
         </section>
 
-        
-<section className="collections section" id="collections">
-  <div className="section-heading">
-    <p className="eyebrow">DISCOVER THE ART OF BEAUTY</p>
-    <h2>Our Exquisite Collections</h2>
-    <p>Elegance crafted for every moment of your life.</p>
-  </div>
+        <section className="collections section" id="collections">
+          <div className="section-heading">
+            <p className="eyebrow">DISCOVER THE ART OF BEAUTY</p>
+            <h2>Our Exquisite Collections</h2>
+            <p>Elegance crafted for every moment of your life.</p>
+          </div>
 
-  <div className="collection-grid">
-    {collections.map((item, index) => (
-      <a
-        href="#contact"
-        className="collection-card"
-        key={item.name}
-      >
-        <img src={item.image} alt={item.name} />
+          <div className="collection-grid">
+            {collections.map((item, index) => (
+              <Link
+                to={item.path}
+                className="collection-card"
+                key={item.name}
+              >
+                <img src={item.image} alt={item.name} />
 
-        <div className="collection-overlay">
-          <span className="collection-number">
-            0{index + 1}
-          </span>
-          <h3>{item.name}</h3>
-          <span className="explore-link">
-            EXPLORE COLLECTION →
-          </span>
-        </div>
-      </a>
-    ))}
-  </div>
-</section>
+                <div className="collection-overlay">
+                  <span className="collection-number">
+                    0{index + 1}
+                  </span>
 
+                  <h3>{item.name}</h3>
 
-<section className="featured section" id="featured">
-  <div className="section-heading">
-    <p className="eyebrow">HANDPICKED FOR YOU</p>
-    <h2>Featured Creations</h2>
-    <p>Discover the beauty of our special selections.</p>
-  </div>
+                  <span className="explore-link">
+                    EXPLORE COLLECTION →
+                  </span>
+                </div>
+              </Link>
+            ))}
+          </div>
+        </section>
 
-  <div className="featured-grid">
-    {featuredProducts.map((product) => (
-      <div className="product-card" key={product.name}>
-        <div className="product-image">
-          <img src={product.image} alt={product.name} />
-        </div>
+        <section className="featured section" id="featured">
+          <div className="section-heading">
+            <p className="eyebrow">HANDPICKED FOR YOU</p>
+            <h2>Featured Creations</h2>
+            <p>Discover the beauty of our special selections.</p>
+          </div>
 
-        <div className="product-details">
-          <p>{product.category}</p>
-          <h3>{product.name}</h3>
-          <a
-  href={`https://wa.me/${whatsappNumber}?text=${encodeURIComponent(
-    `Hello BINDU JEWELLERY, I'm interested in the ${product.name}. Please share more details.`
-  )}`}
-  target="_blank"
-  rel="noreferrer"
-  className="product-enquiry"
->
-  ENQUIRE NOW →
-</a>
-        </div>
-      </div>
-    ))}
-  </div>
-</section>
+          <div className="featured-grid">
+            {featuredProducts.map((product) => (
+              <div className="product-card" key={product.name}>
+                <div className="product-image">
+                  <img src={product.image} alt={product.name} />
+                </div>
 
+                <div className="product-details">
+                  <p>{product.category}</p>
+                  <h3>{product.name}</h3>
 
+                  <a
+                    href={`https://wa.me/${whatsappNumber}?text=${encodeURIComponent(
+                      `Hello BINDU JEWELLERY, I'm interested in the ${product.name}. Please share more details.`
+                    )}`}
+                    target="_blank"
+                    rel="noreferrer"
+                    className="product-enquiry"
+                  >
+                    ENQUIRE NOW →
+                  </a>
+                </div>
+              </div>
+            ))}
+          </div>
+        </section>
 
-        
-<section className="about section" id="about">
-  <div className="about-container">
-    <div className="about-image">
+{/* Founder and Developer Section */}
+<section className="people-section">
+  <div className="people-container">
+
+    <div className="founder-photo">
       <img
-        src="https://images.unsplash.com/photo-1611652022419-a9419f74343d?w=1000"
-        alt="Elegant jewellery collection"
-      />
+  src={`${import.meta.env.BASE_URL}founder.jpg`}
+  alt="Chendamarakshan - Founder of BINDU JEWELLERY"
+/>
     </div>
 
-    <div className="about-content">
-      <p className="eyebrow">THE BINDU EXPERIENCE</p>
-
-      <h2>Elegance for Every Occasion.</h2>
-
+    <div className="people-content">
+      <p className="eyebrow">THE PERSON BEHIND OUR STORE</p>
+      <h2>Meet Our Founder</h2>
+      <h3>CHENDAMARAKSHAN</h3>
       <p>
-        Welcome to BINDU JEWELLERY, where you can explore
-        beautiful gold, silver, diamond, fashion and bridal
-        jewellery for life's special moments.
+        Founder of BINDU JEWELLERY, dedicated to building lasting
+        relationships through quality, trust and timeless jewellery.
       </p>
 
-      <p>
-        Visit our physical store and discover a collection
-        that celebrates beauty, style and elegance.
-      </p>
-
-      <div className="store-location">
-        <a
-  href="https://maps.app.goo.gl/Bcu3Tced7g5M2bnA7"
-  target="_blank"
-  rel="noreferrer"
-  className="product-enquiry"
->
-  GET DIRECTIONS →
-</a>
-      </div>
-
-      <a href="#contact" className="primary-button">
-        CONTACT US
-      </a>
+      <div className="developer-credit">
+  <span>WEBSITE DESIGN & DEVELOPMENT</span>
+  <h3>SIJEESH</h3>
+</div>
     </div>
+
   </div>
 </section>
 
 
-        
-<section className="contact section" id="contact">
-  <p className="eyebrow">VISIT US OR GET IN TOUCH</p>
+        <section className="about section" id="about">
+          <div className="about-container">
+            <div className="about-image">
+              <img
+                src="https://images.unsplash.com/photo-1611652022419-a9419f74343d?w=1000"
+                alt="Elegant jewellery collection"
+              />
+            </div>
 
-  <h2>We'd Love to Welcome You.</h2>
+            <div className="about-content">
+              <p className="eyebrow">THE BINDU EXPERIENCE</p>
 
-  <p>
-    Discover beautiful jewellery at BINDU JEWELLERY.
-    Visit our store or contact us for enquiries.
-  </p>
+              <h2>Elegance for Every Occasion.</h2>
 
-  <div className="contact-grid">
-    <div className="contact-card">
-      <h3>Call Us</h3>
-      <p>Speak with us directly</p>
-      <a href="tel:+919447879288">+91 94478 79288</a>
-    </div>
+              <p>
+                Welcome to BINDU JEWELLERY, where you can explore
+                beautiful gold, silver, diamond, fashion and bridal
+                jewellery for life's special moments.
+              </p>
 
-    <div className="contact-card">
-      <h3>WhatsApp</h3>
-      <p>Enquire about our collections</p>
-      <a
-        href={`https://wa.me/${whatsappNumber}?text=${encodeURIComponent(
-          "Hello BINDU JEWELLERY, I would like to know more about your collections."
-        )}`}
-        target="_blank"
-        rel="noreferrer"
-      >
-        Chat With Us →
-      </a>
-    </div>
+              <p>
+                Visit our physical store and discover a collection
+                that celebrates beauty, style and elegance.
+              </p>
 
-    <div className="contact-card">
-      <h3>Visit Our Store</h3>
-      <p>Vandithavalam, Palakkad, Kerala</p>
-      <a
-        href="https://maps.app.goo.gl/Bcu3Tced7g5M2bnA7"
-        target="_blank"
-        rel="noreferrer"
-      >
-        Get Directions →
-      </a>
-    </div>
-  </div>
-</section>
+              <div className="store-location">
+                <a
+                  href="https://maps.app.goo.gl/Bcu3Tced7g5M2bnA7"
+                  target="_blank"
+                  rel="noreferrer"
+                  className="product-enquiry"
+                >
+                  GET DIRECTIONS →
+                </a>
+              </div>
+
+              <a
+                href="#contact"
+                className="primary-button"
+                onClick={(e) => {
+                  e.preventDefault();
+                  scrollToSection("contact");
+                }}
+              >
+                CONTACT US
+              </a>
+            </div>
+          </div>
+        </section>
+
+        <section className="contact section" id="contact">
+          <p className="eyebrow">VISIT US OR GET IN TOUCH</p>
+
+          <h2>We'd Love to Welcome You.</h2>
+
+          <p>
+            Discover beautiful jewellery at BINDU JEWELLERY.
+            Visit our store or contact us for enquiries.
+          </p>
+
+          <div className="contact-grid">
+            <div className="contact-card">
+              <h3>Call Us</h3>
+              <p>Speak with us directly</p>
+              <a href="tel:+919447879288">+91 94478 79288</a>
+            </div>
+
+            <div className="contact-card">
+              <h3>WhatsApp</h3>
+              <p>Enquire about our collections</p>
+
+              <a
+                href={`https://wa.me/${whatsappNumber}?text=${encodeURIComponent(
+                  "Hello BINDU JEWELLERY, I would like to know more about your collections."
+                )}`}
+                target="_blank"
+                rel="noreferrer"
+              >
+                Chat With Us →
+              </a>
+            </div>
+
+            <div className="contact-card">
+              <h3>Visit Our Store</h3>
+              <p>Vandithavalam, Palakkad, Kerala</p>
+
+              <a
+                href="https://maps.app.goo.gl/Bcu3Tced7g5M2bnA7"
+                target="_blank"
+                rel="noreferrer"
+              >
+                Get Directions →
+              </a>
+            </div>
+          </div>
+        </section>
 
       </main>
 
-      
-<footer className="site-footer">
-  <div className="footer-content">
+      <footer className="site-footer">
+        <div className="footer-content">
 
-    <div className="footer-brand">
-      <h2>BINDU</h2>
-      <span>J E W E L L E R Y</span>
-      <p>Timeless Beauty · Eternal Elegance</p>
+          <div className="footer-brand">
+            <h2>BINDU</h2>
+            <span>J E W E L L E R Y</span>
+            <p>Timeless Beauty · Eternal Elegance</p>
+          </div>
+
+          <div className="footer-links">
+            <h3>Explore</h3>
+
+            <Link to="/">Home</Link>
+
+            <a href="#collections" onClick={(e) => {
+              e.preventDefault();
+              scrollToSection("collections");
+            }}>Collections</a>
+
+            <a href="#featured" onClick={(e) => {
+              e.preventDefault();
+              scrollToSection("featured");
+            }}>Featured Products</a>
+
+            <a href="#about" onClick={(e) => {
+              e.preventDefault();
+              scrollToSection("about");
+            }}>About Us</a>
+
+            <a href="#contact" onClick={(e) => {
+              e.preventDefault();
+              scrollToSection("contact");
+            }}>Contact</a>
+          </div>
+
+          <div className="footer-contact">
+            <h3>Visit Our Store</h3>
+            <p>Vandithavalam</p>
+            <p>Palakkad, Kerala, India</p>
+            <a href="tel:+919447879288">+91 94478 79288</a>
+
+            <a
+              href="https://maps.app.goo.gl/Bcu3Tced7g5M2bnA7"
+              target="_blank"
+              rel="noreferrer"
+            >
+              Get Directions →
+            </a>
+          </div>
+
+        </div>
+
+        <div className="footer-bottom">
+          <p>
+            © {new Date().getFullYear()} BINDU JEWELLERY.
+            All rights reserved.
+          </p>
+          <p>Designed with elegance.</p>
+        </div>
+      </footer>
+
     </div>
+  );
+}
 
-    <div className="footer-links">
-      <h3>Explore</h3>
-      <a href="#home">Home</a>
-      <a href="#collections">Collections</a>
-      <a href="#featured">Featured Products</a>
-      <a href="#about">About Us</a>
-      <a href="#contact">Contact</a>
+function ComingSoon({ title }) {
+  return (
+    <div className="collection-page">
+      <header className="collection-header">
+        <Link to="/" className="collection-logo">
+          BINDU <span>JEWELLERY</span>
+        </Link>
+        <Link to="/" className="back-home">
+          ← BACK TO HOME
+        </Link>
+      </header>
+
+      <section className="collection-hero">
+        <p>DISCOVER OUR COLLECTION</p>
+        <h1>{title}</h1>
+        <span>Beautiful designs coming soon.</span>
+      </section>
+
+      <footer className="collection-page-footer">
+        <h2>BINDU JEWELLERY</h2>
+        <p>Vandithavalam, Palakkad, Kerala</p>
+        <a href="tel:+919447879288">+91 94478 79288</a>
+      </footer>
     </div>
+  );
+}
 
-    <div className="footer-contact">
-      <h3>Visit Our Store</h3>
-      <p>Vandithavalam</p>
-      <p>Palakkad, Kerala, India</p>
-      <a href="tel:+919447879288">+91 94478 79288</a>
-      <a
-        href="https://maps.app.goo.gl/Bcu3Tced7g5M2bnA7"
-        target="_blank"
-        rel="noreferrer"
-      >
-        Get Directions →
-      </a>
-    </div>
-
-  </div>
-
-  <div className="footer-bottom">
-    <p>
-      © {new Date().getFullYear()} BINDU JEWELLERY.
-      All rights reserved.
-    </p>
-    <p>Designed with elegance.</p>
-  </div>
-</footer>
-
-
-    </div>
+function App() {
+  return (
+    <Routes>
+      <Route path="/" element={<Home />} />
+      <Route path="/gold" element={<Gold />} />
+      <Route path="/silver" element={<Silver />} />
+      <Route path="/diamond" element={<Diamond />} />
+      <Route
+        path="/contact"
+        element={<Home />}
+      />
+    </Routes>
   );
 }
 
