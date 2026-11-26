@@ -1,184 +1,806 @@
-.counter {
-  font-size: 16px;
-  padding: 5px 10px;
-  border-radius: 5px;
-  color: var(--accent);
-  background: var(--accent-bg);
-  border: 2px solid transparent;
-  transition: border-color 0.3s;
-  margin-bottom: 24px;
 
-  &:hover {
-    border-color: var(--accent-border);
-  }
-  &:focus-visible {
-    outline: 2px solid var(--accent);
-    outline-offset: 2px;
-  }
+@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600;700&family=Montserrat:wght@400;500;600&display=swap');
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: 'Montserrat', sans-serif;
+  color: #30251c;
+  background: #faf7f1;
+}
+
+a {
+  text-decoration: none;
+  color: inherit;
+}
+
+.announcement {
+  background: #4b3524;
+  color: #f4e6ca;
+  text-align: center;
+  padding: 10px;
+  font-size: 11px;
+  letter-spacing: 2px;
+}
+
+.navbar {
+  min-height: 95px;
+  padding: 12px 7%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background: #faf7f1;
+
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+
+  box-shadow: 0 3px 15px rgba(0, 0, 0, 0.06);
+}
+
+.logo {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 48px;
+  font-weight: 700;
+  letter-spacing: 7px;
+  line-height: 0.85;
+  color: #98703d;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.logo span {
+  font-family: 'Montserrat', sans-serif;
+  font-size: 10px;
+  font-weight: 500;
+  letter-spacing: 7px;
+  margin-top: 9px;
+}
+
+.navbar nav {
+  display: flex;
+  gap: 30px;
+}
+
+.navbar nav a {
+  font-size: 12px;
+  transition: color 0.3s;
+}
+
+.navbar nav a:hover {
+  color: #b18a50;
+}
+
+.nav-contact,
+.primary-button {
+  background: #8b6636;
+  color: white;
+  padding: 14px 23px;
+  font-size: 11px;
+  letter-spacing: 1px;
+  display: inline-block;
+  transition: background 0.3s;
+}
+
+.nav-contact:hover,
+.primary-button:hover {
+  background: #604426;
 }
 
 .hero {
-  position: relative;
-
-  .base,
-  .framework,
-  .vite {
-    inset-inline: 0;
-    margin: 0 auto;
-  }
-
-  .base {
-    width: 170px;
-    position: relative;
-    z-index: 0;
-  }
-
-  .framework,
-  .vite {
-    position: absolute;
-  }
-
-  .framework {
-    z-index: 1;
-    top: 34px;
-    height: 28px;
-    transform: perspective(2000px) rotateZ(300deg) rotateX(44deg) rotateY(39deg)
-      scale(1.4);
-  }
-
-  .vite {
-    z-index: 0;
-    top: 107px;
-    height: 26px;
-    width: auto;
-    transform: perspective(2000px) rotateZ(300deg) rotateX(40deg) rotateY(39deg)
-      scale(0.8);
-  }
+  min-height: 570px;
+  display: flex;
+  align-items: center;
+  padding: 70px 10%;
+  background:
+    linear-gradient(90deg, rgba(25, 17, 11, 0.76), rgba(25, 17, 11, 0.12)),
+    url('https://images.unsplash.com/photo-1611652022419-a9419f74343d?w=1800')
+    center/cover no-repeat;
+  color: white;
 }
 
-#center {
+.hero-content {
+  max-width: 570px;
+}
+
+.eyebrow {
+  color: #a7834c;
+  font-size: 10px;
+  letter-spacing: 3px;
+  font-weight: 600;
+  margin-bottom: 18px;
+}
+
+.hero .eyebrow {
+  color: #e7c995;
+}
+
+.hero h1 {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: clamp(48px, 7vw, 78px);
+  line-height: 1.05;
+  font-weight: 500;
+  margin-bottom: 22px;
+}
+
+.hero-description {
+  max-width: 440px;
+  font-size: 13px;
+  line-height: 2;
+  margin-bottom: 32px;
+  color: #eee4d7;
+}
+
+.section {
+  padding: 90px 8%;
+}
+
+.section-heading {
+  text-align: center;
+  margin-bottom: 45px;
+}
+
+.section-heading h2,
+.about h2,
+.contact h2 {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 48px;
+  font-weight: 500;
+  color: #503a26;
+  margin-bottom: 12px;
+}
+
+.section-heading > p:last-child,
+.about > p:not(.eyebrow),
+.contact > p:not(.eyebrow) {
+  font-size: 13px;
+  line-height: 2;
+  color: #75695d;
+}
+
+.collection-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 22px;
+}
+
+.collection-card {
+  position: relative;
+  height: 390px;
+  overflow: hidden;
+  background: #e6ded1;
+  display: block;
+}
+
+.collection-card img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.8s ease;
+}
+
+.collection-card:hover img {
+  transform: scale(1.09);
+}
+
+.collection-overlay {
+  position: absolute;
+  inset: 0;
   display: flex;
   flex-direction: column;
-  gap: 25px;
-  place-content: center;
-  place-items: center;
-  flex-grow: 1;
+  justify-content: flex-end;
+  padding: 28px;
+  color: white;
 
-  @media (max-width: 1024px) {
-    padding: 32px 20px 24px;
+  background: linear-gradient(
+    to top,
+    rgba(30, 19, 10, 0.78),
+    rgba(30, 19, 10, 0.05) 70%
+  );
+
+  transition: background 0.4s ease;
+}
+.collection-number {
+  font-family: 'Montserrat', sans-serif;
+  font-size: 10px;
+  letter-spacing: 3px;
+  color: #e8c77d;
+  margin-bottom: 10px;
+}
+
+.collection-overlay h3 {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 34px;
+  font-weight: 500;
+  margin-bottom: 12px;
+}
+
+.explore-link {
+  font-size: 9px;
+  letter-spacing: 2px;
+  color: #f1d69c;
+}
+
+.collection-card:hover .collection-overlay {
+  background: linear-gradient(
+    to top,
+    rgba(30, 19, 10, 0.88),
+    rgba(30, 19, 10, 0.12) 75%
+  );
+}
+
+.collection-overlay span {
+  font-size: 9px;
+  letter-spacing: 2px;
+  margin-top: 8px;
+}
+
+
+.about {
+  text-align: center;
+  background: #eee5d7;
+}
+
+.about > p:not(.eyebrow) {
+  max-width: 650px;
+  margin: 0 auto 25px;
+}
+
+.contact {
+  text-align: center;
+}
+
+.contact > p:not(.eyebrow) {
+  margin-bottom: 25px;
+}
+
+footer {
+  background: #3d2c20;
+  color: #eee1cd;
+  text-align: center;
+  padding: 45px 15px;
+}
+
+.footer-logo {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 28px;
+  letter-spacing: 4px;
+  margin-bottom: 10px;
+}
+
+footer p {
+  font-size: 10px;
+  color: #c9b69b;
+  margin-top: 12px;
+}
+
+@media (max-width: 768px) {
+  .navbar {
+    flex-wrap: wrap;
     gap: 18px;
+    justify-content: center;
+  }
+
+  .navbar nav {
+    order: 3;
+    width: 100%;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 17px;
+  }
+
+  .nav-contact {
+    padding: 11px 15px;
+  }
+
+  .hero {
+    min-height: 490px;
+    padding: 60px 7%;
+  }
+
+  .section {
+    padding: 65px 6%;
+  }
+
+  .collection-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 12px;
+  }
+
+  .collection-card {
+    height: 260px;
+  }
+
+  .collection-overlay {
+    padding: 14px;
+  }
+
+  .collection-overlay h3 {
+    font-size: 23px;
+  }
+
+  .section-heading h2,
+  .about h2,
+  .contact h2 {
+    font-size: 39px;
   }
 }
 
-#next-steps {
+@media (max-width: 450px) {
+  .collection-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .collection-card {
+    height: 330px;
+  }
+}
+
+
+
+
+/* =================================
+   BINDU JEWELLERY - WHITE INTRO
+================================= */
+
+.splash-screen {
+  position: fixed;
+  inset: 0;
+  z-index: 999999;
+
   display: flex;
-  border-top: 1px solid var(--border);
-  text-align: left;
+  align-items: center;
+  justify-content: center;
 
-  & > div {
-    flex: 1 1 0;
-    padding: 32px;
-    @media (max-width: 1024px) {
-      padding: 24px 20px;
-    }
+  background: #ffffff;
+
+  opacity: 1;
+  visibility: visible;
+  pointer-events: auto;
+
+  animation: introScreen 3s ease forwards;
+}
+
+.splash-brand {
+  text-align: center;
+  opacity: 0;
+
+  animation: introTitle 3s ease forwards;
+}
+
+.splash-brand h1 {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: clamp(75px, 16vw, 165px);
+  font-weight: 600;
+  letter-spacing: 16px;
+  line-height: 1;
+
+  background: linear-gradient(
+    110deg,
+    #98703d 0%,
+    #c5a15e 25%,
+    #f0dda9 45%,
+    #a77b3e 65%,
+    #d8b978 85%,
+    #98703d 100%
+  );
+
+  background-size: 250% 100%;
+  background-position: 100% center;
+
+  color: transparent;
+  background-clip: text;
+  -webkit-background-clip: text;
+
+  filter: drop-shadow(0 2px 2px rgba(120, 85, 35, 0.15));
+
+  animation: slowGoldShine 10s ease-in-out infinite;
+}
+
+.splash-brand span {
+  display: block;
+  margin-top: 22px;
+
+  font-family: 'Montserrat', sans-serif;
+  font-size: 12px;
+  font-weight: 500;
+  letter-spacing: 9px;
+
+  color: #98703d;
+}
+
+.gold-line {
+  width: 110px;
+  height: 1px;
+  margin: 30px auto 0;
+
+  background: linear-gradient(
+    90deg,
+    transparent,
+    #c5a15e,
+    transparent
+  );
+}
+
+/* White screen stays visible initially */
+@keyframes introScreen {
+  0%, 78% {
+    opacity: 1;
+    visibility: visible;
   }
 
-  .icon {
-    margin-bottom: 16px;
-    width: 22px;
-    height: 22px;
+  100% {
+    opacity: 0;
+    visibility: hidden;
+    pointer-events: none;
+  }
+}
+
+/* Title reveal */
+@keyframes introTitle {
+  0% {
+    opacity: 0;
+    transform: translateY(15px);
   }
 
-  @media (max-width: 1024px) {
+  18%, 72% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  100% {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+}
+
+/* Slow gold reflection */
+@keyframes slowGoldShine {
+  0%, 20% {
+    background-position: 100% center;
+  }
+
+  80%, 100% {
+    background-position: 0% center;
+  }
+}
+
+/* Mobile */
+@media (max-width: 768px) {
+  .splash-brand h1 {
+    font-size: clamp(58px, 15vw, 100px);
+    letter-spacing: 8px;
+  }
+
+  .splash-brand span {
+    font-size: 10px;
+    letter-spacing: 5px;
+  }
+}
+
+/* Normal homepage logo */
+.navbar .logo {
+  opacity: 1;
+  animation: none;
+}
+
+
+/* FEATURED PRODUCTS */
+
+.featured {
+  background: #fffdf9;
+}
+
+.featured-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 24px;
+}
+
+.product-card {
+  background: #faf7f1;
+  overflow: hidden;
+}
+
+.product-image {
+  height: 320px;
+  overflow: hidden;
+  background: #eee5d7;
+}
+
+.product-image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.7s ease;
+}
+
+.product-card:hover .product-image img {
+  transform: scale(1.08);
+}
+
+.product-details {
+  padding: 22px 16px 25px;
+  text-align: center;
+}
+
+.product-details p {
+  color: #a7834c;
+  font-size: 9px;
+  letter-spacing: 2px;
+  margin-bottom: 10px;
+  text-transform: uppercase;
+}
+
+.product-details h3 {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 24px;
+  font-weight: 600;
+  color: #503a26;
+  margin-bottom: 17px;
+}
+
+.product-enquiry {
+  display: inline-block;
+  color: #98703d;
+  font-size: 10px;
+  letter-spacing: 1.5px;
+  border-bottom: 1px solid #c5a15e;
+  padding-bottom: 5px;
+}
+
+.product-enquiry:hover {
+  color: #604426;
+}
+
+@media (max-width: 900px) {
+  .featured-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 450px) {
+  .featured-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .product-image {
+    height: 350px;
+  }
+}
+
+/* ABOUT BINDU JEWELLERY */
+
+.about {
+  background: #eee5d7;
+}
+
+.about-container {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  align-items: center;
+  gap: 65px;
+  max-width: 1200px;
+  margin: auto;
+}
+
+.about-image {
+  height: 480px;
+  overflow: hidden;
+}
+
+.about-image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.about-content h2 {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 52px;
+  font-weight: 500;
+  color: #503a26;
+  margin-bottom: 22px;
+}
+
+.about-content > p:not(.eyebrow) {
+  font-size: 13px;
+  line-height: 2;
+  color: #75695d;
+  margin-bottom: 16px;
+}
+
+.store-location {
+  border-left: 2px solid #b18a50;
+  padding-left: 18px;
+  margin: 28px 0;
+}
+
+.store-location span {
+  font-size: 9px;
+  letter-spacing: 2px;
+  color: #98703d;
+}
+
+.store-location h3 {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 29px;
+  color: #503a26;
+  margin-top: 8px;
+}
+
+.store-location p {
+  font-size: 12px;
+  color: #75695d;
+  margin-top: 5px;
+}
+
+@media (max-width: 768px) {
+  .about-container {
+    grid-template-columns: 1fr;
+    gap: 35px;
+  }
+
+  .about-image {
+    height: 350px;
+  }
+
+  .about-content h2 {
+    font-size: 42px;
+  }
+}
+
+/* CONTACT SECTION */
+
+.contact {
+  background: #faf7f1;
+}
+
+.contact-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 22px;
+  max-width: 1050px;
+  margin: 45px auto 0;
+}
+
+.contact-card {
+  background: #fffdf9;
+  border: 1px solid #e8dece;
+  padding: 35px 20px;
+  text-align: center;
+  transition: transform 0.3s ease;
+}
+
+.contact-card:hover {
+  transform: translateY(-7px);
+}
+
+.contact-card h3 {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 27px;
+  color: #503a26;
+  margin-bottom: 12px;
+}
+
+.contact-card p {
+  font-size: 12px;
+  color: #75695d;
+  margin-bottom: 20px;
+}
+
+.contact-card a {
+  color: #98703d;
+  font-size: 12px;
+  font-weight: 600;
+  border-bottom: 1px solid #c5a15e;
+  padding-bottom: 5px;
+}
+
+@media (max-width: 768px) {
+  .contact-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* PREMIUM FOOTER */
+
+.site-footer {
+  background: #3d2c20;
+  color: #eee1cd;
+  padding: 65px 8% 20px;
+}
+
+.footer-content {
+  display: grid;
+  grid-template-columns: 1.5fr 1fr 1fr;
+  gap: 50px;
+  max-width: 1200px;
+  margin: auto;
+  padding-bottom: 50px;
+}
+
+.footer-brand h2 {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 48px;
+  letter-spacing: 7px;
+  color: #d4b477;
+  line-height: 1;
+}
+
+.footer-brand span {
+  display: block;
+  font-size: 10px;
+  letter-spacing: 5px;
+  margin-top: 10px;
+  color: #d4b477;
+}
+
+.footer-brand p {
+  margin-top: 22px;
+  font-size: 11px;
+  color: #c9b69b;
+}
+
+.footer-links,
+.footer-contact {
+  display: flex;
+  flex-direction: column;
+  gap: 13px;
+}
+
+.footer-links h3,
+.footer-contact h3 {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 25px;
+  font-weight: 500;
+  color: #d4b477;
+  margin-bottom: 8px;
+}
+
+.footer-links a,
+.footer-contact a,
+.footer-contact p {
+  font-size: 11px;
+  color: #c9b69b;
+  transition: color 0.3s;
+}
+
+.footer-links a:hover,
+.footer-contact a:hover {
+  color: #ffffff;
+}
+
+.footer-bottom {
+  border-top: 1px solid rgba(255,255,255,0.15);
+  padding-top: 22px;
+  display: flex;
+  justify-content: space-between;
+  gap: 15px;
+  font-size: 10px;
+  color: #bba98f;
+}
+
+@media (max-width: 768px) {
+  .footer-content {
+    grid-template-columns: 1fr;
+    gap: 35px;
+  }
+
+  .footer-bottom {
     flex-direction: column;
     text-align: center;
   }
 }
 
-#docs {
-  border-right: 1px solid var(--border);
 
-  @media (max-width: 1024px) {
-    border-right: none;
-    border-bottom: 1px solid var(--border);
-  }
-}
 
-#next-steps ul {
-  list-style: none;
-  padding: 0;
-  display: flex;
-  gap: 8px;
-  margin: 32px 0 0;
-
-  .logo {
-    height: 18px;
-  }
-
-  a {
-    color: var(--text-h);
-    font-size: 16px;
-    border-radius: 6px;
-    background: var(--social-bg);
-    display: flex;
-    padding: 6px 12px;
-    align-items: center;
-    gap: 8px;
-    text-decoration: none;
-    transition: box-shadow 0.3s;
-
-    &:hover {
-      box-shadow: var(--shadow);
-    }
-    .button-icon {
-      height: 18px;
-      width: 18px;
-    }
-  }
-
-  @media (max-width: 1024px) {
-    margin-top: 20px;
-    flex-wrap: wrap;
-    justify-content: center;
-
-    li {
-      flex: 1 1 calc(50% - 8px);
-    }
-
-    a {
-      width: 100%;
-      justify-content: center;
-      box-sizing: border-box;
-    }
-  }
-}
-
-#spacer {
-  height: 88px;
-  border-top: 1px solid var(--border);
-  @media (max-width: 1024px) {
-    height: 48px;
-  }
-}
-
-.ticks {
-  position: relative;
-  width: 100%;
-
-  &::before,
-  &::after {
-    content: '';
-    position: absolute;
-    top: -4.5px;
-    border: 5px solid transparent;
-  }
-
-  &::before {
-    left: 0;
-    border-left-color: var(--border);
-  }
-  &::after {
-    right: 0;
-    border-right-color: var(--border);
-  }
-}
